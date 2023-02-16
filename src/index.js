@@ -39,6 +39,7 @@ function mergeSort(array) {
 (0, helpers_1.validateFxn)(merge([1, 2, 11], [1, 6, 9]), [1, 1, 2, 6, 9, 11]);
 (0, helpers_1.validateFxn)(merge([1], [2, 5]), [1, 2, 5]);
 (0, helpers_1.validateFxn)(merge([1, 5], [2]), [1, 2, 5]);
-// validateFxn(mergeSort([3, 1, 2, 9, 6, 1]), [1, 1, 2, 3, 6, 9]);
+(0, helpers_1.validateFxn)(mergeSort([1, 2, 3, 4, 5, 6]), [1, 2, 3, 4, 5, 6]);
+(0, helpers_1.validateFxn)(mergeSort([3, 1, 2, 9, 6, 1]), [1, 1, 2, 3, 6, 9]);
 (0, helpers_1.consoleEnd)();
 (0, helpers_1.consoleBuffer)();

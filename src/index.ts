@@ -48,7 +48,8 @@ validateFxn(merge([1, 2, 11], [1, 6, 9]), [1, 1, 2, 6, 9, 11]);
 validateFxn(merge([1], [2, 5]), [1, 2, 5]);
 validateFxn(merge([1, 5], [2]), [1, 2, 5]);
 
-// validateFxn(mergeSort([3, 1, 2, 9, 6, 1]), [1, 1, 2, 3, 6, 9]);
+validateFxn(mergeSort([1, 2, 3, 4, 5, 6]), [1, 2, 3, 4, 5, 6]);
+validateFxn(mergeSort([3, 1, 2, 9, 6, 1]), [1, 1, 2, 3, 6, 9]);
 
 consoleEnd();
 consoleBuffer();
