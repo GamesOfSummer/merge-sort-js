@@ -32,6 +32,21 @@ function merge(array, array2) {
     }
     return returnedArray;
 }
+var merge2 = function (left, right) {
+    var results = [];
+    while (left.length && right.length) {
+        if (left[0] <= right[0]) {
+            // shift removes the first element in an array and returns it
+            // it's like .pop() for the front
+            results.push(left.shift());
+        }
+        else {
+            results.push(right.shift());
+        }
+    }
+    // either left or right will be empty so you can safely concat both
+    return results.concat(left, right);
+};
 function mergeSort(array) {
     if (array.length <= 1) {
         return array;
@@ -42,7 +57,9 @@ function mergeSort(array) {
         var rightSideArray = array.slice(half_length);
         var sortedLeftSideArray = mergeSort(leftSideArray);
         var sortedRightSideArray = mergeSort(rightSideArray);
-        return merge(sortedLeftSideArray, sortedRightSideArray);
+        var mergedArray2 = merge(sortedLeftSideArray, sortedRightSideArray);
+        var mergedArray = merge2(sortedLeftSideArray, sortedRightSideArray);
+        return mergedArray;
     }
     return array;
 }

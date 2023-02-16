@@ -5,43 +5,9 @@ import {
     validateFxn,
 } from './helpers';
 
-function merge(array: number[], array2: number[]): number[] {
-    let biggestArrayLength = array.length;
-
-    if (array.length < array2.length) {
-        biggestArrayLength = array2.length;
-    }
-
-    let total = 0;
-    let returnedArray: number[] = [];
-
-    for (let i = 0; i < biggestArrayLength; i++) {
-        if (array.length > 0 && array2.length > 0) {
-            const currentArrayValue = array.shift();
-            const currentArray2Value = array2.shift();
-
-            if (currentArrayValue > currentArray2Value) {
-                returnedArray.push(currentArray2Value);
-                returnedArray.push(currentArrayValue);
-            } else {
-                returnedArray.push(currentArrayValue);
-                returnedArray.push(currentArray2Value);
-            }
-        } else if (array.length === 1) {
-            const currentArrayValue = array.shift();
-            returnedArray.push(currentArrayValue);
-        } else if (array2.length === 1) {
-            const currentArray2Value = array2.shift();
-            returnedArray.push(currentArray2Value);
-        }
-    }
-    return returnedArray;
-}
-
-const merge2 = (left, right) => {
+const merge = (left, right) => {
     const results = [];
 
-    // go until one list runs outs
     while (left.length && right.length) {
         if (left[0] <= right[0]) {
             // shift removes the first element in an array and returns it
@@ -67,7 +33,8 @@ function mergeSort(array: number[]) {
         const sortedLeftSideArray = mergeSort(leftSideArray);
         const sortedRightSideArray = mergeSort(rightSideArray);
 
-        return merge2(sortedLeftSideArray, sortedRightSideArray);
+        const mergedArray = merge(sortedLeftSideArray, sortedRightSideArray);
+        return mergedArray;
     }
 
     return array;

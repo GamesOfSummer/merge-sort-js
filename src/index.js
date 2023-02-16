@@ -1,40 +1,8 @@
 "use strict";
 exports.__esModule = true;
 var helpers_1 = require("./helpers");
-function merge(array, array2) {
-    var biggestArrayLength = array.length;
-    if (array.length < array2.length) {
-        biggestArrayLength = array2.length;
-    }
-    var total = 0;
-    var returnedArray = [];
-    for (var i = 0; i < biggestArrayLength; i++) {
-        if (array.length > 0 && array2.length > 0) {
-            var currentArrayValue = array.shift();
-            var currentArray2Value = array2.shift();
-            if (currentArrayValue > currentArray2Value) {
-                returnedArray.push(currentArray2Value);
-                returnedArray.push(currentArrayValue);
-            }
-            else {
-                returnedArray.push(currentArrayValue);
-                returnedArray.push(currentArray2Value);
-            }
-        }
-        else if (array.length === 1) {
-            var currentArrayValue = array.shift();
-            returnedArray.push(currentArrayValue);
-        }
-        else if (array2.length === 1) {
-            var currentArray2Value = array2.shift();
-            returnedArray.push(currentArray2Value);
-        }
-    }
-    return returnedArray;
-}
-var merge2 = function (left, right) {
+var merge = function (left, right) {
     var results = [];
-    // go until one list runs outs
     while (left.length && right.length) {
         if (left[0] <= right[0]) {
             // shift removes the first element in an array and returns it
@@ -58,7 +26,8 @@ function mergeSort(array) {
         var rightSideArray = array.slice(half_length);
         var sortedLeftSideArray = mergeSort(leftSideArray);
         var sortedRightSideArray = mergeSort(rightSideArray);
-        return merge2(sortedLeftSideArray, sortedRightSideArray);
+        var mergedArray = merge(sortedLeftSideArray, sortedRightSideArray);
+        return mergedArray;
     }
     return array;
 }
