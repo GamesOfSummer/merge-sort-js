@@ -33,6 +33,17 @@ function merge(array, array2) {
     return returnedArray;
 }
 function mergeSort(array) {
+    if (array.length <= 1) {
+        return array;
+    }
+    else {
+        var half_length = Math.floor(array.length / 2);
+        var leftSideArray = array.slice(0, half_length);
+        var rightSideArray = array.slice(half_length);
+        var sortedLeftSideArray = mergeSort(leftSideArray);
+        var sortedRightSideArray = mergeSort(rightSideArray);
+        return merge(sortedLeftSideArray, sortedRightSideArray);
+    }
     return array;
 }
 (0, helpers_1.consoleStart)();

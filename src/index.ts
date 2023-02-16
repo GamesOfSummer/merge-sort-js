@@ -38,7 +38,38 @@ function merge(array: number[], array2: number[]): number[] {
     return returnedArray;
 }
 
+const merge2 = (left, right) => {
+    const results = [];
+
+    // go until one list runs outs
+    while (left.length && right.length) {
+        if (left[0] <= right[0]) {
+            // shift removes the first element in an array and returns it
+            // it's like .pop() for the front
+            results.push(left.shift());
+        } else {
+            results.push(right.shift());
+        }
+    }
+
+    // either left or right will be empty so you can safely concat both
+    return results.concat(left, right);
+};
+
 function mergeSort(array: number[]) {
+    if (array.length <= 1) {
+        return array;
+    } else {
+        const half_length = Math.floor(array.length / 2);
+        const leftSideArray = array.slice(0, half_length);
+        const rightSideArray = array.slice(half_length);
+
+        const sortedLeftSideArray = mergeSort(leftSideArray);
+        const sortedRightSideArray = mergeSort(rightSideArray);
+
+        return merge2(sortedLeftSideArray, sortedRightSideArray);
+    }
+
     return array;
 }
 

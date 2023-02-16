@@ -32,7 +32,34 @@ function merge(array, array2) {
     }
     return returnedArray;
 }
+var merge2 = function (left, right) {
+    var results = [];
+    // go until one list runs outs
+    while (left.length && right.length) {
+        if (left[0] <= right[0]) {
+            // shift removes the first element in an array and returns it
+            // it's like .pop() for the front
+            results.push(left.shift());
+        }
+        else {
+            results.push(right.shift());
+        }
+    }
+    // either left or right will be empty so you can safely concat both
+    return results.concat(left, right);
+};
 function mergeSort(array) {
+    if (array.length <= 1) {
+        return array;
+    }
+    else {
+        var half_length = Math.floor(array.length / 2);
+        var leftSideArray = array.slice(0, half_length);
+        var rightSideArray = array.slice(half_length);
+        var sortedLeftSideArray = mergeSort(leftSideArray);
+        var sortedRightSideArray = mergeSort(rightSideArray);
+        return merge2(sortedLeftSideArray, sortedRightSideArray);
+    }
     return array;
 }
 (0, helpers_1.consoleStart)();
